@@ -1,0 +1,72 @@
+<header>
+  <nav class="navbar navbar-light navbar-expand-md">
+    <div class="container-fluid no-pad"><a class="navbar-brand" href="#"><img src="assets/img/Group.png"></a><button
+        data-bs-toggle="collapse" class="navbar-toggler" data-bs-target="#navcol-1"><span class="visually-hidden">Toggle
+          navigation</span><span class="navbar-toggler-icon"></span></button>
+      <div class="collapse navbar-collapse" id="navcol-1">
+        <ul
+          class="navbar-nav d-md-flex d-lg-flex d-xl-flex align-items-md-center align-items-lg-center align-items-xl-center">
+          <li class="nav-item dropdown has-megamenu">
+            <div class="nav-item dropdown"><a class="dropdown-toggle active text-decoration-none" aria-expanded="false"
+                data-bs-toggle="dropdown" href="#">Sofas</a>
+              <div class="py-4 dropdown-menu megamenu w-100" role="menu"
+                style="border-width: 0px;border-radius: 0;box-shadow: 0px 0px 3px 2px var(--s-color);">
+                <!-- Start: 1 Row 2 Columns -->
+                <div class="container cs-width">
+                  <div class="row">
+                    <div class="col-md-2">
+                      <ul>
+                        <li><a href="#">Personaliza tu sofá<br></a></li>
+                        <li><a href="#">Ver todos<br></a></li>
+                      </ul>
+                    </div>
+                    <div class="col-md-2">
+                      <ul>
+                        <li><a href="#">Personaliza tu sofá<br></a></li>
+                        <li><a href="#">Ver todos<br></a></li>
+                      </ul>
+                    </div>
+                  </div>
+                </div><!-- End: 1 Row 2 Columns -->
+              </div>
+            </div>
+          </li>
+          <li class="nav-item"><a class="nav-link" href="#">Accesorios<br></a></li>
+          <li class="nav-item"><a class="nav-link" href="#">Proyectos<br></a></li>
+        </ul>
+        <ul
+          class="navbar-nav d-md-flex d-lg-flex d-xl-flex align-items-md-center align-items-lg-center align-items-xl-center ms-auto right-menu">
+          <li class="nav-item has-dropdown">
+            <div class="nav-item dropdown"><a class="dropdown-toggle active text-decoration-none" aria-expanded="false"
+                data-bs-toggle="dropdown" href="#">Nosotros</a>
+              <div class="dropdown-menu"><a class="dropdown-item" href="#">First Item</a><a class="dropdown-item"
+                  href="#">Second Item</a><a class="dropdown-item" href="#">Third Item</a></div>
+            </div>
+          </li>
+          <li class="nav-item"><a class="nav-link" href="#">Contacto<br></a></li>
+          <li class="nav-item">
+            <div class="nav-item dropdown"><a class="dropdown-toggle" aria-expanded="false" data-bs-toggle="dropdown"
+                href="#"><img src="{{'search.static.png '|asset_url}}"></a>
+              <div class="border-0 dropdown-menu" id="search-box"><input type="search"
+                  placeholder="| ¿Qué estás buscando?"></div>
+            </div>
+          </li>
+          <li class="nav-item"><a class="nav-link" href="#"><img src="{{'cart.static.png' | asset_url }}"><span
+                class="cart-counter">1</span></a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+</header>
+
+{% schema %}
+{
+"name": "t:sections.header.name",
+"settings": [
+{
+"type": "paragraph",
+"content": "t:sections.header.settings.paragraph"
+}
+]
+}
+{% endschema %}
