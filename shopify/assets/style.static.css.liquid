@@ -1,7 +1,7 @@
 @font-face {
   font-family: SangBleu;
-  src: url({{'SangBleuVersailles-Regular.woff2'|asset_url}}) format('woff2'),
-    url({{' SangBleuVersailles-Regular.woff'|asset_url}}) format('woff');
+  src: url({{'SangBleuVersailles-Regular.static.woff2'|asset_url}}) format('woff2'),
+    url({{' SangBleuVersailles-Regular.static.woff'|asset_url}}) format('woff');
   font-weight: 400;
   font-style: normal;
 }
@@ -353,7 +353,13 @@ section#custom-navigation > div::-webkit-scrollbar {
   border: 0 solid rgba(0, 0, 0, 0.125);
   pointer-events: none;
   margin-bottom: 1rem;
+  background: transparent;
 }
+.c-accordian  button {
+  background-color: transparent !important;
+}
+
+
 .c-accordian img {
   order: -1;
   margin-right: 25px;
@@ -475,13 +481,13 @@ a.footer_heading:hover {
   margin-top: 90px;
 }
 .single-desc::before {
-  content: url(/quote.png);
+  content: url( {{ 'quote.static.png' | asset_img_url: 'master'}});
   position: absolute;
   left: 15px;
   top: 17px;
 }
 .single-desc::after {
-  content: url(/quote2.png);
+  content: url({{ 'quote2.static.png' | asset_img_url: 'master'}});
   position: absolute;
   right: 20px;
   bottom: 15px;

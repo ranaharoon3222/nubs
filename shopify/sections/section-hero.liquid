@@ -1,87 +1,234 @@
-{% assign image = section.settings.image %}
-
-<div class="container mb-12 md:mb-24">
-  <div class="hero w-full relative overflow-hidden">
-    {% if image %}
-      <img
-        sizes="
-          (min-width: 1280px) 1500px,
-          (min-width: 1024px) 1250px,
-          (min-width: 768px) 1000px,
-          (min-width: 640px) 720px,
-          600px
-        "
-        srcset="
-          {{ image | img_url: '600x' }} 600w,
-          {{ image | img_url: '720x' }} 720w,
-          {{ image | img_url: '1000x' }} 1000w,
-          {{ image | img_url: '1250x' }} 1250w,
-          {{ image | img_url: '1500x' }} 1500w
-        "
-        src="{{ image | img_url: '1500x' }}"
-        alt="{{ image.alt }}"
-        loading="lazy"
-        class="w-full h-full object-cover object-center"
-      >
-    {% else %}
-      {{ 'lifestyle-1' | placeholder_svg_tag: 'w-full h-full' }}
-    {% endif %}
-
-    <div class="w-full md:max-w-xl md:absolute bottom-0 right-0 bg-white pt-6 md:p-6 md:mb-8 md:mr-8">
-      <div class="text-2xl lg:text-3xl font-bold mb-2">
-        {{ section.settings.headline }}
+<main id="slider-wrap">
+  <div id="swiper">
+    <div class="swiper-wrapper">
+      <div id="slide-1" class="swiper-slide" data-hash="Personaliza-tu-sofa">
+        <!-- Start: Nubs Banner 1 -->
+        <section class="vh-100 d-grid align-items-center home-banner-1"
+          style="background: url(https://remedia.bss.design/assets/img/banner.jpg) no-repeat;background-size: cover;">
+          <div class="text-center px-4">
+            <h1 class="text-white">Una experiencia de sofá</h1>
+            <h1 class="text-white fst-italic">completamente nueva. </h1><a
+              class="main-button-dark mx-auto mt-4 text-uppercase" href="#">personaliza tu sofá</a>
+          </div>
+        </section><!-- End: Nubs Banner 1 -->
       </div>
-
-      <div class="mb-6">
-        {{ section.settings.text }}
+      <div id="slide-2" class="swiper-slide" data-hash="Sofas">
+        <section class="px-md-5 px-3">
+          <div class="row py-3 boder-line mx-0 mb-4 mt-3">
+            <div class="col-md-6 col-xl-7 ps-0">
+              <h3>Sistema flexible,</h3>
+              <h3 class="fst-italic">escalable e integrado.</h3>
+            </div>
+            <div class="col-md-6 col-xl-5 home-cs-width ms-auto ps-0">
+              <p>Con la posibilidad de adaptarse a tus necesidades en cualquier momento.<br></p>
+            </div>
+          </div>
+          <div class="text-center px-3 home-2"
+            style="background: url(https://remedia.bss.design/assets/img/Rectangle%20182.jpg);background-size: cover;">
+            <div class="me-3 pt-5">
+              <!-- Start: Nubs Button --><a class="main-button-dark ms-auto text-uppercase" href="#">ver sofás</a>
+              <!-- End: Nubs Button -->
+            </div>
+          </div>
+        </section>
       </div>
-
-      <a href="{{ section.settings.button-url }}" class="button button-primary">
-        {{ section.settings.button-text }}
-      </a>
+      <div id="slide-3" class="swiper-slide" data-hash="Accesorios">
+        <section class="px-md-5 px-3">
+          <div class="row py-3 boder-line mx-0 mb-4 mt-3">
+            <div class="col-md-6 col-xl-5 ps-0">
+              <h3>Accesorios,</h3>
+              <h3 class="fst-italic">funcionales y únicos.</h3>
+            </div>
+            <div class="col-md-6 col-xl-7 home2-cs-width ms-auto ps-0">
+              <p>Complementa tu sofá NUB con accesorios de alta calidad, cubriendo las necesidades y conford y comodidad
+                que necesitas.<br></p>
+            </div>
+          </div>
+          <div class="text-center px-3 home-2"
+            style="background: url(https://remedia.bss.design/assets/img/slide%204.jpg);background-size: cover;">
+            <div class="me-3 pt-5">
+              <!-- Start: Nubs Button --><a class="main-button-dark ms-auto text-uppercase" href="#">Ver accesorios</a>
+              <!-- End: Nubs Button -->
+            </div>
+          </div>
+        </section>
+      </div>
+      <div id="slide-4" class="swiper-slide" data-hash="Responsabilidad-social">
+        <!-- Start: Home 5 Nubs -->
+        <section class="px-md-5 px-3">
+          <div class="row py-3 boder-line mx-0 mb-4 mt-3">
+            <div class="col-md-6 col-xl-7 ps-0">
+              <h3>Responsabilidad social<br></h3>
+            </div>
+            <div class="col-md-6 col-xl-5 home-cs-width ms-auto ps-0">
+              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit sed hendrerit bibendum odio sed gravida.<br>
+              </p>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-4 col-xl-3"><img class="w-100 slide-4-img"
+                src="https://remedia.bss.design/assets/img/home-6.png"></div>
+            <div class="col-md-4 col-xl-6 align-self-center">
+              <div class="accordion c-accordian" role="tablist" id="accordion-1">
+                <div class="accordion-item">
+                  <h2 class="accordion-header" role="tab"><button class="accordion-button collapsed"
+                      data-bs-toggle="collapse" data-bs-target="#accordion-1 .item-1" aria-expanded="false"
+                      aria-controls="accordion-1 .item-1">Producido de forma sostenible<br><img
+                        src="https://remedia.bss.design/assets/img/recycling.png"></button></h2>
+                  <div class="accordion-collapse collapse item-1 show" role="tabpanel" data-bs-parent="#accordion-1">
+                    <div class="accordion-body">
+                      <p class="mb-0 s-family">Creados con materiales de alta calidad, utilizamos los recursos de manera
+                        sostenible, aprovechando el 90% de los desechos que se reciclan.</p>
+                    </div>
+                  </div>
+                </div>
+                <div class="accordion-item">
+                  <h2 class="accordion-header" role="tab"><button class="accordion-button collapsed"
+                      data-bs-toggle="collapse" data-bs-target="#accordion-1 .item-2" aria-expanded="false"
+                      aria-controls="accordion-1 .item-2">Materiales para toda la vida<br><img
+                        src="https://remedia.bss.design/assets/img/materials.png"></button></h2>
+                  <div class="accordion-collapse collapse item-2 show" role="tabpanel" data-bs-parent="#accordion-1">
+                    <div class="accordion-body">
+                      <p class="mb-0 s-family">La tela de alto rendimiento se puede limpiar fácilmente con jabón y un
+                        poco de agua o se puede quitar por completo y lavar en la lavadora.<br></p>
+                    </div>
+                  </div>
+                </div>
+                <div class="accordion-item">
+                  <h2 class="accordion-header" role="tab"><button class="accordion-button" data-bs-toggle="collapse"
+                      data-bs-target="#accordion-1 .item-3" aria-expanded="true"
+                      aria-controls="accordion-1 .item-3">Comprometidos con la comunidad social<br><img
+                        src="https://remedia.bss.design/assets/img/community.png"></button></h2>
+                  <div class="accordion-collapse collapse show item-3 show" role="tabpanel"
+                    data-bs-parent="#accordion-1">
+                    <div class="accordion-body">
+                      <p class="mb-0 s-family">Actualmente contamos con un taller de alfarería en Iztapalapa que da
+                        empleos a la población local.<br></p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-4 col-xl-3">
+              <!-- Start: Nubs Button --><a class="main-button mx-lg-auto mt-4 text-uppercase text-center"
+                href="#">conoce más<br></a><!-- End: Nubs Button -->
+            </div>
+          </div>
+        </section><!-- End: Home 5 Nubs -->
+      </div>
+      <div id="slide-5" class="swiper-slide" data-hash="Proyectos-especiales">
+        <section class="px-md-5 px-3">
+          <div class="row py-3 boder-line mx-0 mb-4 mt-3">
+            <div class="col-md-6 col-xl-6 ps-0">
+              <h3>Proyectos especiales</h3>
+            </div>
+            <div class="col-md-6 col-xl-6 home-cs-width ms-auto ps-0">
+              <p>El sofá NUB está diseñado para disfrutarlo durante mucho tiempo, por eso hemos creado accesorios de
+                alta calidad que cubrirán las necesidades de conford y comodidad.<br></p>
+            </div>
+          </div>
+          <div class="text-center px-3 home-2"
+            style="background: url(https://remedia.bss.design/assets/img/slide-5.jpg);background-size: cover;">
+            <div class="me-3 pt-5">
+              <!-- Start: Nubs Button --><a class="main-button-dark ms-auto text-uppercase" href="#">conoce más</a>
+              <!-- End: Nubs Button -->
+            </div>
+          </div>
+        </section>
+      </div>
     </div>
   </div>
-</div>
+  <section id="custom-navigation" class="custom-slide-pagination">
+    <div>
+      <p class="slide-pagination" style="height: 239px;opacity: 0;visibility: hidden;">Paragraph</p>
+      <p class="slide-pagination" data-slide="Personaliza-tu-sofa">Personaliza tu sofá</p>
+      <p class="slide-pagination" data-slide="Sofas">Sofás</p>
+      <p class="slide-pagination" data-slide="Accesorios">Accesorios</p>
+      <p class="slide-pagination" data-slide="Responsabilidad-social">Responsabilidad social</p>
+      <p class="slide-pagination" data-slide="Proyectos-especiales">Proyectos especiales</p>
+      <p class="slide-pagination" style="height: 200px;opacity: 0;visibility: hidden;">Paragraph</p><span
+        class="slide-line"></span>
+    </div>
+  </section>
+</main>
 
-{% schema %}
-{
-  "name": "t:sections.hero.name",
-  "class": "shopify-section-vue",
-  "settings": [
-    {
-      "type": "image_picker",
-      "id": "image",
-      "label": "t:common.image"
-    },
-    {
-      "type": "text",
-      "id": "headline",
-      "label": "t:common.headline",
-      "default": "Headline"
-    },
-    {
-      "type": "textarea",
-      "id": "text",
-      "label": "t:common.text",
-      "default": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Iste quos hic praesentium recusandae dolores odio animi deleniti officia cum itaque."
-    },
-    {
-      "type": "url",
-      "id": "button-url",
-      "label": "t:common.button.url"
-    },
-    {
-      "type": "text",
-      "id": "button-text",
-      "label": "t:common.button.text",
-      "default": "Button"
+
+
+
+
+<script>
+  window.addEventListener('load', () => {
+    let e = document.querySelectorAll('.slide-pagination');
+    function t(e, t, i) {
+      var o = e.scrollTop,
+        a = t - o,
+        n = 0,
+        r = function () {
+          n += 20;
+          var t = Math.easeInOutQuad(n, o, a, i);
+          (e.scrollTop = t), n < i && setTimeout(r, 20);
+        };
+      r();
     }
-  ],
-  "presets": [
-    {
-      "name": "t:sections.hero.name",
-      "category": "Image"
-    }
-  ]
-}
-{% endschema %}
+    (Math.easeInOutQuad = function (e, t, i, o) {
+      return (e /= o / 2) < 1
+        ? (i / 2) * e * e + t
+        : (-i / 2) * (--e * (e - 2) - 1) + t;
+    }),
+      e.forEach((i, o) => {
+        i.addEventListener('click', function () {
+          var i = this.offsetTop;
+          let o = this.getAttribute('data-slide');
+          t(document.querySelector('#custom-navigation > div'), i - 71, 300),
+            e.forEach((e, t) => {
+              e.classList.remove('active-slide');
+            }),
+            this.classList.add('active-slide'),
+            (location.hash = o);
+        });
+      });
+    new Swiper('#swiper', {
+      effect: 'fade',
+      fadeEffect: { crossFade: !0 },
+      autoHeight: !0,
+      direction: 'horizontal',
+      loop: !0,
+      hashNavigation: { watchState: !0 },
+      on: {
+        slideChange: function () {
+          setTimeout(() => {
+            e.forEach((i, o) => {
+              if (i.getAttribute('data-slide') === location.hash.split('#')[1]) {
+                var a = i.offsetTop;
+                t(
+                  document.querySelector('#custom-navigation > div'),
+                  a - 71,
+                  300
+                ),
+                  e.forEach((e, t) => {
+                    e.classList.remove('active-slide');
+                  }),
+                  i.classList.add('active-slide');
+              }
+            });
+          }, 400);
+        },
+      },
+    });
+  });
+
+  window.addEventListener('load', function () {
+    const e = document.querySelectorAll('.c-accordian .accordion-collapse ');
+    window.innerWidth < 980 &&
+      e.forEach(function (e) {
+        e.classList.remove('show');
+      });
+    const t = document.querySelectorAll('.footer_link_col .collapse');
+    window.innerWidth < 980 &&
+      t.forEach(function (e) {
+        e.classList.remove('show');
+      });
+  });
+
+
+</script>

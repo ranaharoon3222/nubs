@@ -9,6 +9,7 @@
   <link rel="preconnect" href="https://cdn.shopify.com" crossorigin>
   <link rel="preload" href="{{ 'bundle.js' | asset_url }}" as="script">
 
+  <link rel="stylesheet" href="{{ 'mmenu.static.css' | asset_url }}" as="style">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" as="style">
 
   <link rel="stylesheet"
@@ -44,7 +45,7 @@
   {% endcomment %}
   {% render 'template-captcha' %}
   {% else %}
-  <div id="app" class="flex flex-col min-h-screen font-sans">
+  <div class="flex flex-col min-h-screen font-sans">
     {% section 'layout-announcement-bar' %}
     {% section 'layout-header' %}
 
@@ -54,20 +55,22 @@
     </main>
 
     {% section 'layout-footer' %}
-    {% section 'layout-mobile-navigation' %}
+    <!-- {% section 'layout-mobile-navigation' %} -->
 
-    <transition name="slide-mobile-menu">
+    <!-- <transition name="slide-mobile-menu">
       {% render 'layout-mobile-menu' %}
-    </transition>
+    </transition> -->
   </div>
   {% endif %}
 
   <!-- webpack bundle -->
   <script src="{{ 'bundle.js' | asset_url }}" defer="defer"></script>
 
+  <script src="{{ 'mmenu.static.js' | asset_url }}" defer="defer"></script>
+
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
   <script src="https://unpkg.com/swiper@7/swiper-bundle.min.js"></script>
-  <script src="{{ 'main.js' | asset_url }}"></script>
+
 
 </body>
 
