@@ -1,5 +1,5 @@
 <header>
-  <nav class="navbar navbar-light navbar-expand-md">
+  <nav class="navbar navbar-light navbar-expand-md d-none d-lg-block">
     <div class="container-fluid no-pad">
       <a class="navbar-brand" href="#"><img src="{{ section.settings.logo | img_url: 'master' }}"></a>
       <!-- <button class="navbar-toggler" data-bs-target="#navcol-1" data-bs-toggle="collapse">
@@ -104,90 +104,14 @@
         </ul>
       </div>
     </div>
-    <h1 id="open-mobile">open-mobile</h1>
 
   </nav>
 
-
-
-
-
-  <!-- mobile menu -->
-
-  <div id="my-header">
-    <nav id="mobile-menu">
-      <ul>
-        {% for block in section.blocks %}
-        {% if block.type == 'mega_menu' %}
-
-
-        <li>
-          <a href="{{block.settings.main_item_link}}">
-            {{block.settings.main_item}}
-          </a>
-          {% if block.settings.sub_menu_1 != blank %}
-          <ul>
-            {% for link in linklists[block.settings.sub_menu_1].links %}
-            <li>
-              <a href="{{ link.url }}">{{ link.title }}</a>
-            </li>
-            {% endfor %}
-            {% if block.settings.sub_menu_1 != blank %}
-            {% for link in linklists[block.settings.sub_menu_2].links %}
-
-            <li>
-              <a href="{{ link.url }}">{{ link.title }}</a>
-            </li>
-            {% endfor %}
-
-            {% endif %}
-
-          </ul>
-          {% endif %}
-        </li>
-
-        {% endif %}
-        {% endfor %}
-
-
-        {% for block in section.blocks %}
-        {% if block.type == 'right_menu' %}
-        <li>
-          <a class=" active text-decoration-none" href="{{ block.settings.main_item_link }}"> {{
-            block.settings.main_item }} </a>
-        </li>
-
-
-        {% endif %}
-        {% endfor %}
-
-
-      </ul>
-
-    </nav>
-
-  </div>
-
-
-
-  <!-- end mobile menu -->
+  {% render 'mobile-navigation', logo: section.settings.logo, blocks: section.blocks %}
 
 </header>
 
-<script>
-  document.addEventListener('DOMContentLoaded', () => {
-    const menu = new MmenuLight(document.querySelector('#mobile-menu'));
 
-    const navigator = menu.navigation();
-    const drawer = menu.offcanvas();
-
-    document.querySelector('#open-mobile').addEventListener('click', (evnt) => {
-      evnt.preventDefault();
-      drawer.open();
-    });
-  });
-
-</script>
 
 {% schema %}
 {

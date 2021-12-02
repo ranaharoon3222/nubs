@@ -1,13 +1,15 @@
 @font-face {
   font-family: SangBleu;
-  src: url({{'SangBleuVersailles-Regular.static.woff2'|asset_url}}) format('woff2'),
+  src: url({{'SangBleuVersailles-Regular.static.woff2'|asset_url}})
+      format('woff2'),
     url({{' SangBleuVersailles-Regular.static.woff'|asset_url}}) format('woff');
   font-weight: 400;
   font-style: normal;
 }
 @font-face {
   font-family: SangBleu;
-  src: url({{'SangBleuVersailles-Italic.static.woff2'|asset_url}}) format('woff2'),
+  src: url({{'SangBleuVersailles-Italic.static.woff2'|asset_url}})
+      format('woff2'),
     url({{'SangBleuVersailles-Italic.static.woff '|asset_url}}) format('woff');
   font-weight: 400;
   font-style: italic;
@@ -28,7 +30,7 @@
 }
 @font-face {
   font-family: swiper-icons;
-  src: url({{'swiper-icons.static.woff'| asset_url}}) format('woff');
+  src: url({{'swiper-icons.static.woff'|asset_url}}) format('woff');
   font-weight: 400;
   font-style: normal;
 }
@@ -55,6 +57,9 @@
   --info-color: #41b7ff;
   --button-width: 230px;
   --button-height: 32px;
+}
+img {
+  max-width: 100%;
 }
 body {
   background: #fafafa;
@@ -194,6 +199,9 @@ h6 {
 .no-pad {
   padding: 0;
 }
+/* =============
+ Header Menu
+ ============== */
 .navbar-brand {
   background-color: var(--s-color);
   height: 100%;
@@ -278,6 +286,29 @@ h6 {
   border-radius: 0;
   top: 36px;
 }
+
+.mobile_logo {
+  background-color: #efebeb;
+}
+.mm-spn.mm-spn--light {
+  color: var(--p-color);
+  background: #ffffff;
+  font-family: var(--p-family);
+}
+.mm-ocd.mm-ocd--left {
+  top: 56px;
+}
+.mm-ocd__content {
+  width: 100%;
+}
+.mm-ocd__backdrop {
+  z-index: -1;
+}
+
+/* =============
+ Header Menu
+ ============== */
+
 body,
 html {
   overflow-x: hidden;
@@ -355,10 +386,9 @@ section#custom-navigation > div::-webkit-scrollbar {
   margin-bottom: 1rem;
   background: transparent;
 }
-.c-accordian  button {
+.c-accordian button {
   background-color: transparent !important;
 }
-
 
 .c-accordian img {
   order: -1;
@@ -481,13 +511,13 @@ a.footer_heading:hover {
   margin-top: 90px;
 }
 .single-desc::before {
-  content: url( {{ 'quote.static.png' | asset_img_url: 'master'}});
+  content: url({{'quote.static.png'|asset_img_url:'master'}});
   position: absolute;
   left: 15px;
   top: 17px;
 }
 .single-desc::after {
-  content: url({{ 'quote2.static.png' | asset_img_url: 'master'}});
+  content: url({{'quote2.static.png'|asset_img_url:'master'}});
   position: absolute;
   right: 20px;
   bottom: 15px;
