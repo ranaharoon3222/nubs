@@ -1,4 +1,4 @@
-<header>
+<header vue>
   <nav class="navbar navbar-light navbar-expand-md d-none d-lg-block">
     <div class="container-fluid no-pad">
       <a class="navbar-brand" href="#"><img src="{{ section.settings.logo | img_url: 'master' }}"></a>
@@ -96,9 +96,9 @@
               </div>
             </div>
           </li>
-          <li class="nav-item">
+          <li class="nav-item" >
             <a class="nav-link" href="#"><img src="{{'cart.static.png' | asset_url }}"><span
-                class="cart-counter">1</span>
+                class="cart-counter">  {% raw %}{{ $store.state['cart'].count }}{% endraw %}    </span>
             </a>
           </li>
         </ul>

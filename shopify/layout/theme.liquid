@@ -38,6 +38,10 @@
 </head>
 
 <body class="min-h-screen">
+<div vue>
+{% render 'cart-popup' %}
+</div>
+
   {% if request.page_type == 'captcha' %}
   {% comment %}
   fix: Shopify automatically inserts script tags on captcha pages into the content_for_layout tag

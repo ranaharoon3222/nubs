@@ -1,5 +1,9 @@
+
+
+
 <script>
 import { toRefs, ref } from "vue";
+import { useStore } from "vuex";
 
 export default {
   props: {
@@ -17,9 +21,12 @@ export default {
     },
   },
   setup(props, { slots }) {
+    const store = useStore();
+
     const { currentVariant, productOptions, productVariants } = toRefs(props);
 
     const selectedVariant = ref(currentVariant.value);
+    const quantityValue = ref(1);
 
     const selectOption = ({ name }, $event) => {
       const selectedValue = $event.target.value;
@@ -57,6 +64,22 @@ export default {
       window.history.pushState({ path: newurl }, "", newurl);
     };
 
+    // **********
+    // quantity
+    // **********
+
+    const increment = () => {
+      quantityValue.value++;
+    };
+    const decrement = () => {
+      if (quantityValue.value > 1) {
+        quantityValue.value--;
+      }
+    };
+    // **********
+    // quantity
+    // **********
+
     //**********
     // add To Cart
     // *********
@@ -64,6 +87,7 @@ export default {
     const processCartForm = (e) => {
       e.preventDefault();
       const formdata = new FormData(e.target);
+      document.body.classList.add("loading");
 
       fetch("/cart/add.js", {
         method: "POST",
@@ -73,10 +97,12 @@ export default {
           return response.json();
         })
         .then((data) => {
-          console.log(data);
+          document.body.classList.remove("loading");
+          store.dispatch("cart/current_cart", data);
           return data;
         })
         .catch((error) => {
+          document.body.classList.remove("loading");
           console.error("Error:", error);
         });
     };
@@ -90,6 +116,9 @@ export default {
         selectedVariant: selectedVariant.value,
         selectOption,
         processCartForm,
+        increment,
+        decrement,
+        quantityValue,
       });
   },
 };

@@ -1,161 +1,378 @@
 {% assign current_variant = product.selected_or_first_available_variant %}
 {% assign featured_image = current_variant.featured_image | default: product.featured_image %}
 
-<div class="container grid max-w-screen-xl gap-8 md:grid-cols-2">
-  <renderless-product-gallery v-slot="{ initialRender, currentImage, switchImage }">
-    <div>
-      <div>
-<<<<<<< HEAD
-        <img v-if="initialRender" src="{{ featured_image | img_url: '750x' }}"
-          src-placeholder="{{ featured_image | img_url: '50x' }}" alt="{{ featured_image.alt | escape }}" loading="lazy"
-          class="object-cover object-center w-full h-auto">
-=======
-        <img
-          v-if="initialRender"
-          src="{{ featured_image | img_url: '750x' }}"
-          alt="{{ featured_image.alt | escape }}"
-          loading="lazy"
-          class="object-cover object-center w-full h-auto"
-        >
->>>>>>> d301f66db69c36e5e67840388654a286f285933f
+<div vue>
 
-        <div v-else>
-          <img :src="currentImage.url" :key="currentImage.url" :alt="currentImage.alt" loading="lazy"
-            class="object-cover object-center w-full h-full">
-        </div>
-      </div>
-
-      {% if product.has_only_default_variant %}
-      <div class="flex gap-4 mt-4">
-        {% for image in product.images %}
-        <link rel="preload" as="image" href="{{ image.src | img_url: '750x' }}">
-
-        <button class="w-20 h-20 md:w-24 md:h-24" data-url="{{ image.src | img_url: '750x' }}"
-          data-alt="{{ image.alt | escape }}" @click="switchImage">
-          <img sizes="
-                  (min-width: 768px) 96px,
-                  80px
-                " srcset="
-                  {{ image.src | img_url: '80x' }} 80w,
-                  {{ image.src | img_url: '96x' }} 96w
-                " src="{{ image.src | img_url: '96x' }}" src-placeholder="{{ image.src | img_url: '25x' }}"
-            alt="{{ image.alt | escape }}" loading="lazy"
-            class="object-cover object-center w-full h-full pointer-events-none">
-        </button>
-        {% endfor %}
-      </div>
-      {% endif %}
+  <!-- Start: Nub BreadCrumbs -->
+  <section>
+    <div class="container">
+      <ol class="breadcrumb no-border">
+        <li class="breadcrumb-item"><a href="#"><span>Inicio&nbsp;</span></a></li>
+        <li class="breadcrumb-item"><a class="active-item" href="#"><span>Diseñadores</span></a></li>
+      </ol>
     </div>
-  </renderless-product-gallery>
+  </section><!-- End: Nub BreadCrumbs -->
 
-  <div class="md:mt-12">
-    {% if product.title %}
-    <h1 class="mb-4 text-2xl font-bold lg:text-3xl md:mb-8">
-      {{ product.title }}
-    </h1>
-    {% endif %}
+  <section class="pb-5">
+    <!-- Start: 1 Row 2 Columns -->
 
-    {% if current_variant.available %}
-    <div class="mb-10">
-      <div class="flex gap-3">
-        <span class="inline-block text-lg {% if current_variant.compare_at_price %}text-red-500{% endif %}">
-          {{ current_variant.price | money }}
-        </span>
+    <div class="container">
+      <div class="row">
+        <renderless-product-variant-selector
+          v-slot="{ selectedVariant,selectOption,processCartForm,increment,decrement,quantityValue }"
+          :current-variant="{{ current_variant | json | replace: '"', "'" }}"
+          :product-options="{{ product.options_with_values | json | replace: '"', "'" }}"
+          :product-variants="{{ product.variants | json | replace: '"', "'" }}">
+          <div class="col-md-5 mt-md-0 mt-4 col-xl-4 order-2 order-md-1">
+            <h3>{{product.title}}</h3>
+            <div id="pricing" class="hstack gap-3 comp-bg product-price px-3 py-1 font-12 justify-content-center mt-1">
+              <div><span class="s-family"> {{ current_variant.price | money }} </span></div>
+              <div class="text-decoration-line-through text2-color"><span class="s-family"> {{
+                  current_variant.compare_at_price | money }}</span></div>
+            </div>
+            <div class="mt-5 dropdown">
+              <div id="product_toggle">
+                <h6 class="s-family text-uppercase dropdown-toggle position-relative" data-bs-toggle="dropdown"
+                  aria-expanded="false">modificar variantes<i
+                    class="material-icons position-absolute">keyboard_arrow_down</i></h6>
+                <ul class="dropdown-menu" aria-labelledby="product_toggle">
+                  {% for block in section.blocks %}
+                  {% if block.type == 'features' %}
+                  <div class="hstack px-3 mb-3 font-12 text2-color">
+                    <div class=" w-50 ">{{block.settings.title}}</div>
+                    <div class=" w-50 ">
+                      <a href="#" class="text2-color">
+                        {{ block.settings.value }} </a>
+                    </div>
+                  </div>
+                  {% endif %}
+                  {% endfor %}
+                </ul>
+              </div>
+            </div>
+            <div class="comp-bg px-2 py-3 product_description">
+              <h6 class="s-family text-uppercase">Descripción</h6>
+              <p class="mb-0"> {{ product.description }} </p>
+              </p>
+            </div>
 
-        {% if current_variant.compare_at_price %}
-        <del class="text-lg">
-          {{ current_variant.compare_at_price | money }}
-        </del>
-
-        <div class="px-2 py-1 text-sm tracking-wider text-white uppercase bg-red-500">
-          {{ 'common.sale' | t }}
-        </div>
-        {% endif %}
-      </div>
-
-      <div class="text-sm text-gray-600">
-        {% if shop.taxes_included %}
-        {{ 'common.including_tax' | t }}
-        {% else %}
-        {{ 'common.excluding_tax' | t }}
-        {% endif %}
-      </div>
-    </div>
-    {% else %}
-    <div class="mb-6">
-      {{ 'common.sold_out' | t }}
-    </div>
-    {% endif %}
-
-
-    <renderless-product-variant-selector v-slot="{ selectedVariant, selectOption,processCartForm }"
-      :current-variant="{{ current_variant | json | replace: '"', "'" }}"
-      :product-options="{{ product.options_with_values | json | replace: '"', "'" }}"
-      :product-variants="{{ product.variants | json | replace: '"', "'" }}">
-
-      <form method="post" @submit.prevent="processCartForm" action="/cart/add" id="product_cart_form">
-
-        <div class="flex items-end gap-4 mb-6">
-          {% if current_variant.available %}
-          <input type="number" name="quantity" value="1" min="1" pattern="[0-9]*" class="w-16">
-          {% endif %}
-
-          {% if product.has_only_default_variant %}
-          <input name="id" type="hidden" :value="{{ current_variant.id }}" readonly>
-          {% else %}
-          <div class="flex-1">
-            <div>
-              <input name="id" type="hidden" :value="selectedVariant.id" readonly>
-
-              <div class="flex gap-x-3">
-                {% for option in product.options_with_values %}
-                <div class="flex-1">
-                  <label for="product-select-option-{{ forloop.index }}">
-                    {{ option.name | escape }}
-                  </label>
-
-                  <select id="product-select-{{ forloop.index }}" class="w-full h-12 p-2 border" @change="selectOption({
-                          name: '{{ option.name }}'
-                        }, $event)">
-                    {% for value in option.values %}
-                    <option value="{{ value }}" {% if option.selected_value==value %}selected{% endif %}>
-                      {{ value | escape }}
-                    </option>
-                    {% endfor %}
-                  </select>
+            {% capture cartForm %}
+            <div class="hstack mt-4 gap-4">
+              <div id="quantity_picker" class="hstack">
+                <div><button @click="decrement" class="btn " type="button"><i class="material-icons">remove</i></button>
                 </div>
-                {% endfor %}
+                <input type="number" class="border-0" name="quantity" :value="quantityValue.value" min="1"
+                  pattern="[0-9]*">
+                <div><button @click="increment" class="btn " type="button"><i class="material-icons">add</i></button>
+                </div>
+              </div>
+              <div id="add_to_cart"><button name="add" class="main-button text-center text-uppercase">
+                  <span class="mr-1 spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                  agregar al carrito
+                </button>
               </div>
             </div>
 
+            {% endcapture %}
+
+            <!-- add to cart -->
+            <form method="post" @submit.prevent="processCartForm" action="/cart/add" id="product_cart_form">
+
+              {% if product.has_only_default_variant %}
+              <input name="id" type="hidden" :value="{{ current_variant.id }}" readonly>
+              {{cartForm}}
+              {% else %}
+
+              <input name="id" type="hidden" :value="selectedVariant.id" readonly>
+
+              {{cartForm}}
+
+              {% endif %}
+
+            </form>
+            <!-- end cart btn -->
+
           </div>
-          {% endif %}
+        </renderless-product-variant-selector>
+
+        <div class="col-md-7 col-xl-8 order-1 order-md-2">
+          <div class="swiper" id="product_gallery">
+            <div class="swiper-wrapper">
+              {% for image in product.images %}
+              <div class="swiper-slide">
+                <a class="spotlight" href="{{ image.src | product_img_url: 'master' }}">
+                  <img class="w-100" src="{{ image.src | product_img_url: 'master' }}">
+                </a>
+              </div>
+              {% endfor %}
+
+            </div>
+
+            <div class="swiper-pagination"></div>
+
+
+            <div id="inner-navigation">
+              <div class="inner-next">
+                <img src="{{ 'next-arrow.static.png' | asset_url }}">
+              </div>
+              <div class="inner-prev">
+                <img src="{{ 'prev-arrow.static.png' | asset_url }}">
+              </div>
+            </div>
+
+            <div class="sale-badge">
+              <span> {{ product.compare_at_price_max | minus:product.price | times:100 |
+                divided_by:product.compare_at_price_max }}% </span>
+            </div>
+
+          </div>
         </div>
-
-        {% if current_variant.available %}
-        <div class="grid grid-cols-2 gap-4">
-          <div class="button-shopify-buy-it-now">
-            {{ form | payment_button }}
-          </div>
-
-          <div>
-            <button name="add" class="w-full h-12 button button-secondary">
-              {{ 'action.add_to_cart' | t }}
-            </button>
-          </div>
-        </div>
-        {% endif %}
-      </form>
-
-
-    </renderless-product-variant-selector>
-
-
-
-    {% if product.description %}
-    <div class="mt-4">
-      {{ product.description }}
+      </div>
     </div>
-    {% endif %}
-  </div>
+
+
+
+
+    <!-- End: 1 Row 2 Columns -->
+  </section>
+  <section class="mb-5">
+    <div class="container">
+      <div class="mb-3 full-border-top d-flex justify-content-between">
+        <h4>Detalles del producto</h4>
+      </div>
+    </div><!-- Start: 1 Row 4 Columns -->
+    <div class="container">
+      <div class="row mt-5">
+        <div class="col-5 col-sm-5 col-md-3">
+          <h6 class="text-uppercase s-family boder-line pb-2 p-color">dimensiones</h6>
+          <!-- <h6 class="s-family boder-line pb-2">General</h6> -->
+        </div>
+        <div class="col-2 col-sm-2 col-md-2 pe-0">
+          <h6 class="s-family boder-line pb-2 p-color text2-color">Alto</h6>
+          <!-- <h6 class="s-family boder-line pb-2">12"</h6> -->
+        </div>
+        <div class="col-2 col-sm-2 col-md-2 px-0">
+          <h6 class="s-family boder-line pb-2 p-color text2-color">Ancho</h6>
+          <!-- <h6 class="s-family boder-line pb-2">12"</h6> -->
+        </div>
+        <div class="col-3 col-sm-3 col-md-2 ps-0">
+          <h6 class="s-family boder-line pb-2 p-color text2-color">Profundidad</h6>
+          <!-- <h6 class="s-family boder-line pb-2">12"</h6> -->
+        </div>
+        <div class="col-sm-12 col-md-3 py-sm-0 py-4">
+          <!-- <img class="w-100" src="https://remedia.bss.design/assets/img/image%208.png"> -->
+        </div>
+      </div>
+
+      {% for block in section.blocks %}
+      {% if block.type == 'dimensions' %}
+
+      <div class="row ">
+        <div class="col-5 col-sm-5 col-md-3">
+          <h6 class="s-family boder-line pb-2"> {{block.settings.title}} </h6>
+        </div>
+        <div class="col-2 col-sm-2 col-md-2 pe-0">
+          <h6 class="s-family boder-line pb-2"> {{block.settings.alto}} </h6>
+        </div>
+        <div class="col-2 col-sm-2 col-md-2 px-0">
+          <h6 class="s-family boder-line pb-2"> {{block.settings.ancho}} </h6>
+        </div>
+        <div class="col-3 col-sm-3 col-md-2 ps-0">
+          <h6 class="s-family boder-line pb-2"> {{block.settings.profundidad}} </h6>
+        </div>
+        <div class="col-sm-12 col-md-3 py-sm-0 py-4"><img class="w-100" src=""></div>
+      </div>
+
+      {% endif %}
+      {% endfor %}
+
+      <!-- materials -->
+      <div class="row mt-5">
+        <div class="col-5 col-sm-5 col-md-3">
+          <h6 class="text-uppercase s-family boder-line pb-2 p-color">materiales</h6>
+        </div>
+        <div class="col-2 col-sm-2 col-md-2 pe-0">
+          <h6 class="s-family boder-line pb-2 p-color text2-color">Textil</h6>
+        </div>
+        <div class="col-2 col-sm-2 col-md-2 px-0">
+          <h6 class="s-family boder-line pb-2 p-color text2-color">Superficie</h6>
+        </div>
+        <div class="col-3 col-sm-3 col-md-5 px-0">
+          <h6 class="s-family pb-2 p-color text2-color boder-line">Metal</h6>
+        </div>
+      </div>
+
+      {% for block in section.blocks %}
+      {% if block.type == 'materials' %}
+
+      <div class="row ">
+        <div class="col-5 col-sm-5 col-md-3">
+          <h6 class="s-family boder-line pb-2">{{block.settings.title}}</h6>
+        </div>
+        <div class="col-2 col-sm-2 col-md-2 pe-0">
+          <h6 class="s-family boder-line pb-2"> {{block.settings.Textil}} </h6>
+        </div>
+        <div class="col-2 col-sm-2 col-md-2 px-0">
+          <h6 class="s-family boder-line pb-2"> {{block.settings.Superficie}} </h6>
+        </div>
+        <div class="col-3 col-sm-3 col-md-5 px-0">
+          <h6 class="s-family boder-line pb-2"> {{block.settings.Metal}} </h6>
+        </div>
+      </div>
+      {% endif %}
+      {% endfor %}
+
+
+
+      <div class="row mt-5">
+        <div class="col-5 col-sm-5 col-md-3">
+          <h6 class="text-uppercase s-family boder-line pb-2 p-color">cuidados</h6>
+        </div>
+        <div class="col-7 col-sm-7 col-md-9">
+          <h6 class="s-family pb-2 p-color text2-color boder-line">Descripción</h6>
+        </div>
+      </div>
+
+
+      {% for block in section.blocks %}
+      {% if block.type == 'cuidados' %}
+
+      <div class="row ">
+        <div class="col-5 col-sm-5 col-md-3">
+          <h6 class="s-family boder-line pb-2 h-100"> {{block.settings.title}} </h6>
+        </div>
+        <div class="col-7 col-sm-7 col-md-9">
+          <h6 class="s-family boder-line pb-2 h-100">{{block.settings.description}}
+          </h6>
+        </div>
+      </div>
+
+      {% endif %}
+      {% endfor %}
+
+
+    </div><!-- End: 1 Row 4 Columns -->
+  </section>
+
+
 </div>
+
+
+
+
+</div>
+
+
+<script>
+  window.addEventListener('load', function () {
+    new Swiper('#product_gallery', {
+      slidesPerView: 1,
+      autoHeight: true,
+      navigation: { nextEl: '.inner-next', prevEl: '.inner-prev' },
+      pagination: {
+        el: '.swiper-pagination',
+        type: 'bullets',
+      },
+      // breakpoints: { 981: { slidesPerView: 4, spaceBetween: 40 } },
+    });
+  })
+</script>
+
+
+
+
+<script src="{{'spotlight.static.bundle.js' | asset_url }}"></script>
+
+
+{% schema %}
+{
+"name": "product",
+"settings": [],
+"blocks": [
+{
+"type": "features",
+"name": "features",
+"settings": [
+{
+"type": "text",
+"id": "title",
+"label": "Feature Heading"
+},
+{
+"type": "text",
+"id": "value",
+"label": "Feature Value"
+}
+]
+},
+{
+"type": "dimensions",
+"name": "Dimensions",
+"settings": [
+{
+"type": "text",
+"id": "title",
+"label": "Dimensions Title"
+},
+{
+"type": "text",
+"id": "alto",
+"label": "Alto"
+},
+{
+"type": "text",
+"id": "ancho",
+"label": "Ancho Dimension"
+},
+{
+"type": "text",
+"id": "profundidad",
+"label": "Profundidad Dimension"
+}
+]
+},
+{
+"type": "materials",
+"name": "Materials",
+"settings": [
+{
+"type": "text",
+"id": "title",
+"label": "Dimensions Title"
+},
+{
+"type": "text",
+"id": "Textil",
+"label": "Textil"
+},
+{
+"type": "text",
+"id": "Superficie",
+"label": "Superficie"
+},
+{
+"type": "text",
+"id": "Metal",
+"label": "Metal"
+}
+]
+},
+{
+"type": "cuidados",
+"name": "Cuidados",
+"settings": [
+{
+"type": "text",
+"id": "title",
+"label": "Cuidados Title"
+},
+{
+"type": "text",
+"id": "description",
+"label": "Description"
+}
+]
+}
+]
+}
+{% endschema %}
