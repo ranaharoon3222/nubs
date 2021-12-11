@@ -7,6 +7,7 @@ const state = {
   test: 'test',
   cart_popup: false,
   count: 0,
+  total: 0,
 };
 
 /**
@@ -19,12 +20,12 @@ const getters = {};
  */
 const mutations = {
   SAVE_CART(state, payload) {
+    state.total = (payload.total_price / 100).toFixed(2);
     state.cart = payload;
     state.count = payload.item_count;
   },
 
   CURRENT_CART(state, { current, full_cart }) {
-    console.log('state.cart', full_cart);
     state.current_cart = current;
     state.cart = full_cart;
     state.count = full_cart.item_count;

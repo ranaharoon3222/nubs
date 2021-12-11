@@ -902,3 +902,152 @@ div#inner-navigation {
 }
 
 /* cart popup end */
+
+
+
+
+
+
+
+.cart_img {
+  min-width: 130px;
+  max-width: 150px;
+}
+
+.boder-line-top {
+  border-top: 1px solid var(--p-color);
+}
+
+.quantity_picker {
+  border: 0.5px solid #3c3c3b;
+  width: 120px;
+  height: 32px;
+  justify-content: space-between;
+}
+
+.quantity_picker input::-webkit-outer-spin-button,
+.quantity_picker input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.quantity_picker i.material-icons {
+  font-size: 20px;
+}
+
+.quantity_picker input {
+  width: 35px;
+  background: transparent;
+  text-align: center;
+}
+
+.quantity_picker input:focus {
+  border: none;
+  outline: none;
+}
+
+.quantity_picker button {
+  display: flex;
+  padding: 0 3px;
+}
+
+.quantity_picker button:focus,
+.quantity_picker button:active {
+  box-shadow: none;
+}
+
+@media all and (min-width: 980px) {
+  .quantity_picker button {
+    padding: 0 10px;
+  }
+}
+
+i {
+  cursor: pointer;
+}
+
+
+
+
+
+.cart_spinner {
+  display: none;
+}
+
+.loading .cart_spinner {
+  display: block;
+}
+
+
+.cs-radio {
+  border-top: 1px solid #efebeb;
+}
+
+.quiz-col {
+  flex-direction: column;
+  align-items: center;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+#quiz .breadcrumb * {
+  font-family: var(--s-family);
+  color: var(--text-3-color);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+#quiz .breadcrumb {
+  border-bottom: none;
+}
+
+.quiz-bdc + .quiz-bdc::before {
+  content: '\e5cc';
+  color: var(--text-3-color);
+  font-family: 'Material Icons';
+}
+
+.quiz-bdc span {
+  font-size: 12px;
+}
+
+#quiz .breadcrumb li {
+  display: flex;
+}
+
+.quiz-bdc.active a {
+  color: var(--p-color) !important;
+  border-bottom: 2px solid var(--p-color);
+}
+.quiz-bdc.active a span {
+  color: var(--p-color) !important;
+}
+
+
+a[disabled=true] {
+  pointer-events: none;
+  background: gray !important;
+}
+
+
+div#quiz-sec {
+    position: fixed;
+    z-index: 99;
+    background: white;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    transition: all .3s;
+    transform: translateX(-200rem);
+    overflow:auto
+}
+
+.open-quiz {
+    transform: translateX(0) !important;
+}
+
+#quiz-close {
+  cursor:pointer
+}

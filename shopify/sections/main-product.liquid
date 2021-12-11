@@ -3,15 +3,7 @@
 
 <div vue>
 
-  <!-- Start: Nub BreadCrumbs -->
-  <section>
-    <div class="container">
-      <ol class="breadcrumb no-border">
-        <li class="breadcrumb-item"><a href="#"><span>Inicio&nbsp;</span></a></li>
-        <li class="breadcrumb-item"><a class="active-item" href="#"><span>Diseñadores</span></a></li>
-      </ol>
-    </div>
-  </section><!-- End: Nub BreadCrumbs -->
+
 
   <section class="pb-5">
     <!-- Start: 1 Row 2 Columns -->
@@ -26,9 +18,9 @@
           <div class="col-md-5 mt-md-0 mt-4 col-xl-4 order-2 order-md-1">
             <h3>{{product.title}}</h3>
             <div id="pricing" class="hstack gap-3 comp-bg product-price px-3 py-1 font-12 justify-content-center mt-1">
-              <div><span class="s-family"> {{ current_variant.price | money }} </span></div>
+              <div><span class="s-family"> {{ current_variant.price | money_without_trailing_zeros }} </span></div>
               <div class="text-decoration-line-through text2-color"><span class="s-family"> {{
-                  current_variant.compare_at_price | money }}</span></div>
+                  current_variant.compare_at_price | money_without_trailing_zeros }}</span></div>
             </div>
             <div class="mt-5 dropdown">
               <div id="product_toggle">
@@ -367,7 +359,7 @@
 "label": "Cuidados Title"
 },
 {
-"type": "text",
+"type": "richtext",
 "id": "description",
 "label": "Description"
 }
